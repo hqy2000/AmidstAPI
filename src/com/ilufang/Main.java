@@ -19,6 +19,8 @@ public class Main {
     private static MinecraftInterface mc;
 
     public static void main(String[] args) {
+        System.out.println("Amidst API v1.0.0.");
+        System.out.println("Check https://github.com/mmlmml1/AmidstAPI for any updates.");
         if (args.length<4) {
             System.err.println("Invalid Args. Usage: java -jar amidst_api.jar dot_folder version seed radius");
             return;
