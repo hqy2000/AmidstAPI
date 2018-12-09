@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="AMIDST" level="project" />
+    <orderEntry type="library" name="amidst-v4-3-beta5" level="project" />
   </component>
 </module>

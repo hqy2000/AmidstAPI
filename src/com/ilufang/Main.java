@@ -1,12 +1,16 @@
 package com.ilufang;
 
-import amidst.Util;
-import amidst.minecraft.LocalMinecraftInterface;
-import amidst.minecraft.Minecraft;
+import amidst.mojangapi.minecraftinterface.MinecraftInterfaces;
+import amidst.mojangapi.minecraftinterface.MinecraftInterface;
+import amidst.mojangapi.file.LauncherProfile;
+import amidst.mojangapi.world.WorldType;
+import amidst.mojangapi.file.MinecraftInstallation;
+import amidst.mojangapi.file.directory.DotMinecraftDirectory;
 
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 public class Main {
     private static final int ARG_MCJARFILE = 1;
@@ -14,7 +18,7 @@ public class Main {
     private static final int ARG_CHUNKX = 3;
     private static final int ARG_CHUNKY = 4;
 
-    private static LocalMinecraftInterface mc;
+    private static MinecraftInterface mc;
 
     public static void main(String[] args) {
         if (args.length<5) {
@@ -29,11 +33,23 @@ public class Main {
         }
 
         //File mcJar = new File(args[ARG_MCJARFILE]);
-        File mcJar = new File("/Users/ilufang/Library/Application Support/minecraft/versions/1.8.1/1.8.1.jar");
+        File mcPath = new File("C:\\Users\\huqin\\AppData\\Roaming\\.minecraft");
         try {
             lockFile.createNewFile();
-            Util.setMinecraftDirectory();
-            mc = new LocalMinecraftInterface(new Minecraft(mcJar));
+            DotMinecraftDirectory directory = new DotMinecraftDirectory(mcPath);
+            MinecraftInstallation install = new MinecraftInstallation(directory);
+            List<LauncherProfile> profileList = install.readInstalledVersionsAsLauncherProfiles();
+            profileList.forEach((v)->{
+                if (v.getVersionName().equals("*1.13.2")) {
+                    try {
+                        mc = MinecraftInterfaces.fromLocalProfile(v);
+                    } catch (Exception e) {
+                        System.err.println("Failed to load Minecraft jar.");
+                        lockFile.delete();
+                    }
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Failed to load Minecraft jar.");
@@ -41,7 +57,15 @@ public class Main {
             return;
         }
         //mc.createWorld(Long.parseLong(args[ARG_SEED]), "default", "");
-        mc.createWorld(-8221753507381494678L, "default", "");
+        try {
+            mc.createWorld(-6271427238188031176L, WorldType.DEFAULT, "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Failed to create world.");
+            lockFile.delete();
+            return;
+        }
+
 
 
         // Create Biomes
@@ -56,7 +80,7 @@ public class Main {
         //int beginX = Integer.parseInt(args[ARG_CHUNKX]);
         //int beginY = Integer.parseInt(args[ARG_CHUNKY]);
         int beginX = 0, beginY = 0;
-        for (int x=0; x<=0; x++) for (int y=0; y<=0; y++) {
+        for (int x=-10; x<=10; x++) for (int y=-10; y<=10; y++) {
             try {
                 System.out.println("Generating "+x+","+y);
                 File biomeFile = new File("biomes" + x + "_" + y);
@@ -66,7 +90,7 @@ public class Main {
                 FileOutputStream os = new FileOutputStream(biomeFile);
                 //DataOutputStream dataos = new DataOutputStream(os);
                 // 1. Biomes
-                int[] biomes = mc.getBiomeData(x*1024, y*1024, 1024, 1024);
+                int[] biomes = mc.getBiomeData(x*1024, y*1024, 1024, 1024, true);
                 byte[] bytebiomes = new byte[biomes.length];
                 for (int i=0; i<biomes.length; i++) {
                     bytebiomes[i] = (byte)biomes[i];
@@ -83,6 +107,5 @@ public class Main {
         }
         lockFile.delete();
         System.out.println("Completed.");
-
     }
 }
