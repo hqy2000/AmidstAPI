@@ -93,5 +93,7 @@ public class Main {
             }
         }
         System.out.println("Completed.");
+        System.out.println("Amidst API v1.0.0.");
+        System.out.println("Check https://github.com/mmlmml1/AmidstAPI for any updates.");
     }
 }

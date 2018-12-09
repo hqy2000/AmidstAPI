@@ -6,7 +6,9 @@ For Minecraft 1.8 and below, check [previous work](https://github.com/mmlmml1/Am
 ## Usage
 You need Java Runtime Environment to run this. We encourage you to use Java 8.
 
-Usage:
+You also need a working Minecraft installation.
+
+**Command**:
 ``` java -jar amidst_api.jar dot_folder version seed radius```
 
 E.g. ```java -jar AmidstAPI.jar "C:\\Users\\huqin\\AppData\\Roaming\\.minecraft" "1.13.2" -6271427238188031176 10```
