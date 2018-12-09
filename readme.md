@@ -24,7 +24,7 @@ E.g. ```java -jar AmidstAPI.jar "C:\\Users\\huqin\\AppData\\Roaming\\.minecraft"
 Data are exported to ```out``` folder. It usually takes 1 hour when the radius is ```10``` (i7-7820HQ, SSD).
 
 ## Development
-Download amidst jar file from the its [releases](https://github.com/toolbox4minecraft/amidst/releases), and add it as a library. 
+Download amidst jar file from the its [releases](https://github.com/toolbox4minecraft/amidst/releases), drop it into ```lib``` folder, and add it as a library. We are using ```4.3-beta5``` at this moment.
 
 ## License
 MIT License
