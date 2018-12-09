@@ -1,14 +1,15 @@
 # Amidst API
-A command line tool to help you extract biome data from Minecraft. 
+A command line tool to help you extract biome data from Minecraft 1.8+. 
 This tool uses [amidst](https://github.com/toolbox4minecraft/amidst/releases) to communicate with official Minecraft jar file and extract information.
 
+For Minecraft 1.8 and below, check [previous work](https://github.com/mmlmml1/AmidstAPI/commit/4c4a701fde30ea964f88715c794414a73f66c2d1) by [ilufang](https://github.com/ilufang).
 ## Usage
 You need Java Runtime Environment to run this. We encourage you to use Java 8.
 
 Usage:
 ``` java -jar amidst_api.jar dot_folder version seed radius```
 
-E.g. ```java -jar AmidstAPI.jar "C:\\Users\\huqin\\AppData\\Roaming\\.minecraft" "1.13.2" -6271427238188031176 1```
+E.g. ```java -jar AmidstAPI.jar "C:\\Users\\huqin\\AppData\\Roaming\\.minecraft" "1.13.2" -6271427238188031176 10```
 
 * ```dot_folder``` is where your ```.minecraft``` folder is located, e.g. ```C:\Users\huqin\AppData\Roaming\.minecraft```. Please remember to escape '\\'.
 
@@ -23,5 +24,7 @@ Data are exported to ```out``` folder. It usually takes 1 hour when the radius i
 ## Development
 Download amidst jar file from the its [releases](https://github.com/toolbox4minecraft/amidst/releases), and add it as a library. 
 
+## Authors
+Pr
 ## License
 MIT License
