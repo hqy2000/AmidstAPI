@@ -27,4 +27,4 @@ Data are exported to ```out``` folder. It usually takes 1 hour when the radius i
 Download amidst jar file from the its [releases](https://github.com/toolbox4minecraft/amidst/releases), drop it into ```lib``` folder, and add it as a library. We are using ```4.3-beta5``` at this moment.
 
 ## License
-MIT License
+GPLv3
